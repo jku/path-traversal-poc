@@ -1,0 +1,41 @@
+{
+ "signatures": [
+  {
+   "keyid": "6ddf003056044913efbfe871824f38b3a91cb45eb81cd246c91cb97b839c8ea8",
+   "sig": "4d74e26917b862630c757bd96b594f5c6da01deee0a7abcb41085e200c2367fb58f2852068ba26399df8e930c6021ec0d11adf2488323d05e8a71dda761ab400"
+  }
+ ],
+ "signed": {
+  "_type": "targets",
+  "delegations": {
+   "keys": {
+    "c90676afd6826c9a53a8e012c1802c4231f731d45a3459fdfdd819c2b44e9204": {
+     "keyid": "c90676afd6826c9a53a8e012c1802c4231f731d45a3459fdfdd819c2b44e9204",
+     "keytype": "ed25519",
+     "keyval": {
+      "public": "03002c6450179cc6733987fd445de27cfd1c12765f13f6854d5a515bdc59da11"
+     },
+     "scheme": "ed25519"
+    }
+   },
+   "roles": [
+    {
+     "keyids": [
+      "c90676afd6826c9a53a8e012c1802c4231f731d45a3459fdfdd819c2b44e9204"
+     ],
+     "name": "../path-traversal-test",
+     "paths": [
+      "*"
+     ],
+     "terminating": false,
+     "threshold": 1
+    }
+   ]
+  },
+  "expires": "2021-09-04T18:53:28Z",
+  "spec_version": "1.0.19",
+  "targets": {},
+  "version": 2,
+  "x-tufrepo-expiry-period": 86400
+ }
+}

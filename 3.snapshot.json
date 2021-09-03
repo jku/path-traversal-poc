@@ -1,0 +1,23 @@
+{
+ "signatures": [
+  {
+   "keyid": "aa56c7ec6dc94d492059afab19609fde332dd06ce3919baff4b2f10655d90f7a",
+   "sig": "0e4da2cf9d44d4583585a2e76e70d8e30f633b8b3c3578ab5a0aa73c152e2dc2a908ed752c40c2cb20471a7040db9a7904cce7c0b9050c5895308d628d546505"
+  }
+ ],
+ "signed": {
+  "_type": "snapshot",
+  "expires": "2021-09-04T19:06:29Z",
+  "meta": {
+   "../path-traversal-test.json": {
+    "version": 1
+   },
+   "targets.json": {
+    "version": 2
+   }
+  },
+  "spec_version": "1.0.19",
+  "version": 3,
+  "x-tufrepo-expiry-period": 86400
+ }
+}
