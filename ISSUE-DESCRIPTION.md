@@ -6,7 +6,7 @@ TUF implementations. The most pressing one is that the reference clients
 I believe we should look at the wider issue as well.
 
 
-### Path traversal in client file creation
+## Path traversal in client file creation
 
 Attacker with ability to affect the rolenames of delegated targets in the
 repository can overwrite files ending in ".json" anywhere on client device.
@@ -27,13 +27,12 @@ It is a real issue however:
    maintainers
 
 The issue has revealed itself over time so is pretty much documented publicly
-already:
-https://github.com/theupdateframework/python-tuf/issues/1527
-The specific vulnerability is documented in a private repository:
+already: https://github.com/theupdateframework/python-tuf/issues/1527. The
+specific vulnerability is documented in a private repository:
 https://github.com/jku/path-traversal-poc
 
 
-### Wider issue with using rolenames in filenames
+## Wider issue with using rolenames in filenames
 
 Arbitrary rolenames are probably a valuable feature as documented by asraa in
 https://github.com/theupdateframework/python-tuf/issues/1527#issuecomment-903871213.
