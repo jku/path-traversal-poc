@@ -59,7 +59,9 @@ multiple problems:
 An ideal solution (that disregards backwards compatibility) might include:
 * "meta" should use rolename, not filename, as key
 * specification should not specify how client or repository must store
-  metadata: this is an implementation detail.
+  metadata: this is an implementation detail. 
+* rolename use in URLs, and any required encoding must be specified in spec
+  (so clients are able to download metadata)
 * A "implementer notes" document should give advice on how to store metadata
 * The advice should specify a best known method for filename creation (TBD):
   Some options for the best known method could be:
