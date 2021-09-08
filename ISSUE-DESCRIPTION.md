@@ -2,8 +2,9 @@
 
 There are several connected issues with using rolenames as filename parts in
 TUF implementations. The most pressing one is that the reference clients
-(tuf/client/ and tuf/ngclient/) both have a path traversal vulnerability, but
-I believe we should look at the wider issue as well.
+(`tuf/client/` and `tuf/ngclient/`) both have a path traversal vulnerability
+that in the worst case can result in near-arbitrary file overwrites
+on the client device, but I believe we should look at the wider issue as well.
 
 
 ## Path traversal in client file creation
@@ -15,14 +16,15 @@ processing the delegation in question.
  
 The issue is mitigated by a few facts:
  * implementations generally don't allow arbitrary rolename selection (?)
- * the attack does require the ability to A) insert new metadata for the role
-   and B) get the role delegated by an existing targets metadata
+ * the attack does require the ability to A) insert new metadata for the 
+   path-traversing role and B) get the role delegated by an existing targets
+   metadata
  * the written file content is heavily restricted since it needs to be a valid,
    signed targets file. The file extension is always .json.
 
 It is a real issue however:
  * overwriting almost arbitrary files is ... bad
- * PEP-480 like implementations are likely to lead to rolenames being less
+ * PEP-480-like implementations are likely to lead to rolenames being less
    controlled by repository and more controlled by individual targets
    maintainers
 
@@ -58,27 +60,29 @@ multiple problems:
 
 An ideal solution (that disregards backwards compatibility) might include:
 * "meta" should use rolename, not filename, as key
-* specification should not specify how client or repository must store
-  metadata: this is an implementation detail. 
-* rolename use in URLs, and any required encoding must be specified in spec
-  (so clients are able to download metadata)
+* specification should *not* specify how client or repository must store
+  metadata: this is an implementation detail.
+* rolename use in URLs, and any required encoding must be specified in the
+  specification (so clients are able to download metadata)
 * A "implementer notes" document should give advice on how to store metadata
 * The advice should specify a best known method for filename creation (TBD):
   Some options for the best known method could be:
   * use rolename hash as filename
   * use a URL-encoded rolename as filename (this requires specifying some
-    details about the encoding)
+    details about the encoding -- e.g. default python url encoding will not
+    encode "/")
 
 
 ### Practical solution
 
 First, client implementations should defend against path traversal -- possibly
-by preventing rolenames with "/". The issues around rolenames as filenames
-should probably be mentioned in the spec.
+by preventing rolenames with "/" or by defining an encoding method that can be
+implemented esily. The issues around rolenames as filenames should probably be
+mentioned in the spec.
 
 Then, some sort of path towards the "Ideal solution" should be deviced. A
 fairly backwards compatible, but ugly, solution might be to keep using "meta"
-as is but document that the keys are not "real" filenames but just 
+as is but document that the keys are not "real" filenames but just
 rolename+extension (which is already true since "role1.json" is a valid key
 for meta but the non-versioned file might not even exist in a
 _consistent_snapshot_ repository).
