@@ -59,32 +59,31 @@ multiple problems:
 ### Ideal solution
 
 An ideal solution (that disregards backwards compatibility) might include:
-* "meta" should use rolename, not filename, as key
-* specification should *not* specify how client or repository must store
-  metadata: this is an implementation detail.
 * rolename use in URLs, and any required encoding must be specified in the
-  specification (so clients are able to download metadata)
-* A "implementer notes" document should give advice on how to store metadata
-* The advice should specify a best known method for filename creation (TBD):
-  Some options for the best known method could be:
-  * use rolename hash as filename
-  * use a URL-encoded rolename as filename (this requires specifying some
-    details about the encoding -- e.g. default python url encoding will not
-    encode "/")
+  specification
+* targetpath use in URLs, and any required encoding must be specified in the
+  specification
+* behaviour of rolenames in "meta" should be defined
+* specification should *not* define how client or repository must store
+  metadata: this is an implementation detail.
+* spec or a "implementer notes" document should give advice on how to store
+  local metadata, including a best known method for filename creation
+* spec or a "implementer notes" document should give advice on how to store
+  target files locally
 
 
 ### Practical solution
 
 1. First, client implementations should defend against path traversal -- possibly
    by preventing rolenames with "/" or by defining an encoding method that can be
-   implemented easily.
+   implemented easily and in a mostly backwards-compatible manner.
 2. Targetpath handling should be reviewed for similar issues, path traversal
    should be prevented (although in this case we can't just prevent "/")
 3. The issue with using rolenames and targetpaths in local paths should described
    in the specification
 5. Finally, some sort of path towards the "Ideal solution" should be deviced. A
    fairly backwards compatible, but ugly, solution might be to keep using "meta"
-   as is but document that the keys are not "real" filenames but just
+   as is but document that the keys might not match real filenames but are just
    rolename+extension (which is already true since "role1.json" is a valid key
    for meta but the non-versioned file might not even exist in a
    _consistent_snapshot_ repository).
