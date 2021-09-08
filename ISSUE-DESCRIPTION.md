@@ -75,14 +75,16 @@ An ideal solution (that disregards backwards compatibility) might include:
 
 ### Practical solution
 
-First, client implementations should defend against path traversal -- possibly
-by preventing rolenames with "/" or by defining an encoding method that can be
-implemented esily. The issues around rolenames as filenames should probably be
-mentioned in the spec.
-
-Then, some sort of path towards the "Ideal solution" should be deviced. A
-fairly backwards compatible, but ugly, solution might be to keep using "meta"
-as is but document that the keys are not "real" filenames but just
-rolename+extension (which is already true since "role1.json" is a valid key
-for meta but the non-versioned file might not even exist in a
-_consistent_snapshot_ repository).
+1. First, client implementations should defend against path traversal -- possibly
+   by preventing rolenames with "/" or by defining an encoding method that can be
+   implemented easily.
+2. Targetpath handling should be reviewed for similar issues, path traversal
+   should be prevented (although in this case we can't just prevent "/")
+3. The issue with using rolenames and targetpaths in local paths should described
+   in the specification
+5. Finally, some sort of path towards the "Ideal solution" should be deviced. A
+   fairly backwards compatible, but ugly, solution might be to keep using "meta"
+   as is but document that the keys are not "real" filenames but just
+   rolename+extension (which is already true since "role1.json" is a valid key
+   for meta but the non-versioned file might not even exist in a
+   _consistent_snapshot_ repository).
