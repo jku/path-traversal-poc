@@ -13,6 +13,8 @@ Attacker with ability to affect the rolenames of delegated targets in the
 repository can overwrite files ending in ".json" anywhere on client device.
 Client is only required to do `get_one_valid_targetinfo()` that ends up
 processing the delegation in question. 
+https://github.com/jku/path-traversal-poc contains details and an example
+repository.
  
 The issue is mitigated by a few facts:
  * implementations generally don't allow arbitrary rolename selection (?)
@@ -29,20 +31,18 @@ It is a real issue however:
    maintainers
 
 The issue has revealed itself over time so is pretty much documented publicly
-already: https://github.com/theupdateframework/python-tuf/issues/1527. The
-specific vulnerability is documented in a private repository:
-https://github.com/jku/path-traversal-poc
+already: https://github.com/theupdateframework/python-tuf/issues/1527.
 
 
 ## Wider issue with using rolenames in filenames
 
 Arbitrary rolenames are probably a valuable feature as documented by asraa in
 https://github.com/theupdateframework/python-tuf/issues/1527#issuecomment-903871213.
-The rest of this document takes this as given but an alternative here is to limit
-rolenames.
+The rest of this document takes this as given but an alternative here would be
+to limit rolenames.
 
-Using rolenames as filenames in the specification and the implementations has
-multiple problems:
+Using rolenames as filenames in the specification and the implementations
+currently has multiple problems:
 * preventing path traversal requires very careful software engineering: this is
   not ideal
 * filesystems have requirements for valid filenames (these differ between
@@ -63,7 +63,7 @@ An ideal solution (that disregards backwards compatibility) might include:
   specification
 * targetpath use in URLs, and any required encoding must be specified in the
   specification
-* behaviour of rolenames in "meta" should be defined
+* behaviour of rolenames in "meta" should be defined (encoded or not?)
 * specification should *not* define how client or repository must store
   metadata: this is an implementation detail.
 * spec or a "implementer notes" document should give advice on how to store
@@ -81,9 +81,6 @@ An ideal solution (that disregards backwards compatibility) might include:
    should be prevented (although in this case we can't just prevent "/")
 3. The issue with using rolenames and targetpaths in local paths should described
    in the specification
-5. Finally, some sort of path towards the "Ideal solution" should be deviced. A
-   fairly backwards compatible, but ugly, solution might be to keep using "meta"
-   as is but document that the keys might not match real filenames but are just
-   rolename+extension (which is already true since "role1.json" is a valid key
-   for meta but the non-versioned file might not even exist in a
-   _consistent_snapshot_ repository).
+5. Finally, some sort of path towards the "Ideal solution" should be deviced.
+   I have a potential url-encoding based solution which I will document shortly.
+
