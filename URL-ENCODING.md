@@ -15,7 +15,7 @@
   download a roles metadata: metadata URLs are in practice controlled by the
   repository.
 * URL-encoding encodes _a lot_, and we are mostly just interested in encoding
-  "/" and "\". However, complete URL-encoding is likely easier to implement
+  "/" and "\\". However, complete URL-encoding is likely easier to implement
   than a partial one.
 
 ## Solution:
