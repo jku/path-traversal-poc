@@ -37,7 +37,9 @@ step below.
 
 ### On rolenames:
 * In metadata, rolenames are unrestricted strings
-* When forming a metadata download url, the rolename MUST be URL-encoded
+* When forming a metadata download url, the rolename MUST be URL-enc
+URL-encoding encodes a lot, and we are mostly just interested in encoding "/" and "". However, complete URL-encoding is likely easier to implement than a partial one.
+oded
 * **if rolenames are used as filenames on the client, recommendation is to
   URL-encode rolename when building the filename to avoid path-traversal and
   filesystem compatibility issues**. This fixes the vulnerability
@@ -66,7 +68,7 @@ Rolename "role1"
  * recommended local filename "role1.json"
 
 Rolename "../../../file"
- * client download url "https://localhost/metadata/**1...%2F..%2F..%2Ffile**.json"
+ * client download url **"https://localhost/metadata/1...%2F..%2F..%2Ffile.json"**
  * recommended local filename "**..%2F..%2F..%2Ffile**.json"
 
 targetname "path/to/file"
