@@ -37,9 +37,7 @@ step below.
 
 ### On rolenames:
 * In metadata, rolenames are unrestricted strings
-* When forming a metadata download url, the rolename MUST be URL-enc
-URL-encoding encodes a lot, and we are mostly just interested in encoding "/" and "". However, complete URL-encoding is likely easier to implement than a partial one.
-oded
+* When forming a metadata download url, the rolename MUST be URL-encoded
 * **if rolenames are used as filenames on the client, recommendation is to
   URL-encode rolename when building the filename to avoid path-traversal and
   filesystem compatibility issues**. This fixes the vulnerability
