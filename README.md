@@ -36,7 +36,7 @@ updater.get_one_valid_targetinfo("any target name here")
 # Initial root must be in ./root.json.
 
 from tuf.ngclient import Updater
-u = Updater("./", ""http://localhost:8000/", "http://localhost:8000/")
+updater = Updater("./", ""http://localhost:8000/", "http://localhost:8000/")
 updater.refresh()
 updater.get_one_valid_targetinfo("any target name here")
 
