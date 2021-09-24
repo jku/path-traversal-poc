@@ -46,4 +46,5 @@ updater.get_one_valid_targetinfo("any target name here")
 ### More info
 
 Thoughts on the issues TUF/python-tuf has with rolenames being used in filenames/URLS:  [ISSUE-DESCRIPTION.md](ISSUE-DESCRIPTION.md)
+
 Potential solution: [URL-ENCODING.md](URL-ENCODING.md) -- note that fixing the path traversal is easy (_encode rolename before using as filename_), but the document outlines some related future improvements as well
