@@ -1,6 +1,6 @@
 # TUF client metadata path-traversal proof of concept
 
-This repository will fool both legacy updater and ngclient to write 
+This repository will fool both python-tuf client implementations to write 
 (overwrite) a file outside of the client metadata store when
 `get_one_valid_targetinfo()` is called. For this specific example, the
 file will be written one level above the metadata directory but likely
